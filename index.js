@@ -1,7 +1,7 @@
 const express = require('express');
 const {SuccessResponse } = require('./utils/common');
 const connectDB = require('./config/db-config');
-const apiRoutes = require('./routes')
+const apiRoutes = require('./routes');
 
 //express app instance
 const app = express();
@@ -13,7 +13,7 @@ app.use(express.urlencoded({ extended: true }));
 
 
 //PORT NUMBER
-const PORT = 5000 || process.env.PORT;
+const PORT = process.env.PORT || 5000;
 
 //Connect to DB
 connectDB();
@@ -22,9 +22,13 @@ connectDB();
 //check route
 app.get('/', (req, res) => {
     SuccessResponse.message  = "Okay";
+    console.log(req.body);
     return res.status(200).json(SuccessResponse);
 })
-
+app.post('/', (req, res)=>{
+    console.log(req.body);
+    return res.json(req.body.arr);
+})
 app.use('/api', apiRoutes);
 
 

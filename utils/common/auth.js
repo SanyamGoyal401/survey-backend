@@ -18,6 +18,7 @@ function createToken(payload){
         return token;
     }
     catch(error){
+        console.log(error);
         throw error;
     }
 }
