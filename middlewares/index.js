@@ -1,3 +1,3 @@
 module.exports = {
-    multerUpload : require('./multer-upload-middleware'),
+    multerUploadMiddleware : require('./multer-upload-middleware'),
 }

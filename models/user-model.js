@@ -30,7 +30,7 @@ const userSchema = new mongoose.Schema({
         default : 'farmer',
         require: true,
     }
-});
+},{timestamps: true});
 
 userSchema.pre('save', function(next){
     let user = this;

@@ -16,7 +16,6 @@ function createToken(payload){
     try{
         const token = jwt.sign(payload, SECRET_KEY, {expiresIn: EXPIRES_IN});
         return token;
-
     }
     catch(error){
         throw error;

@@ -1,7 +1,7 @@
 const express = require('express');
-const { multerUpload } = require('./middlewares');
-const { UploadFile, SuccessResponse } = require('./utils/common');
+const {SuccessResponse } = require('./utils/common');
 const connectDB = require('./config/db-config');
+const apiRoutes = require('./routes')
 
 //express app instance
 const app = express();
@@ -25,22 +25,7 @@ app.get('/', (req, res) => {
     return res.status(200).json(SuccessResponse);
 })
 
-
-app.post('/upload', multerUpload, async (req, res) => {
-    try{
-        for (f of req.files) {
-            const result = await UploadFile(f);
-            console.log(result);
-        }
-        console.log(req.body.text);
-        return res.json({ message: "Okay" });
-    }
-    catch(error){
-        console.log(error);
-        return res.json({message: "Not Okay"});
-    }
-})
-
+app.use('/api', apiRoutes);
 
 
 app.listen(PORT, function (err) {
