@@ -6,29 +6,29 @@ const {SALT_ROUNDS} = require('../config/server-config')
 const userSchema = new mongoose.Schema({
     email: {
         type : String,
-        require : true,
+        required : true,
     },
     name: {
         type: String,
-        require : true,
+        required : true,
     },
     image: {
         type: String,
-        require : true,
+        required : true,
     },
     password : {
         type: String,
-        require : true,
+        required : true,
     },
     number: {
         type: Number,
-        require: true,
+        required : true,
     },
     role: {
         type: String,
         enum : ['farmer', 'surveyor'],
         default : 'farmer',
-        require: true,
+        required : true,
     }
 },{timestamps: true});
 
