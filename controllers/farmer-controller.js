@@ -40,6 +40,7 @@ async function getFarmers(req, res){
     try {
         const userId = req.query.id;
         if(userId){
+            console.log("farmer controller ", userId);
             const farmer = await FarmerService.findFarmerByUserId(userId);
             SuccessResponse.data = farmer;
             return res.status(StatusCodes.OK).json(SuccessResponse);

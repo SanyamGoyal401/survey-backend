@@ -31,7 +31,21 @@ async function findUser(email) {
     }
 }
 
+
+async function findById(_id) {
+    try {
+        const user = await userRepository.getById(_id);
+        return user;
+    }
+    catch (error) {
+        const appError = new AppError(error.message, StatusCodes.INTERNAL_SERVER_ERROR);
+        throw appError;
+    }
+}
+
+
 module.exports = {
     createUser,
     findUser,
+    findById
 }

@@ -15,8 +15,9 @@ async function createFarmer(data) {
 
 
 async function findFarmerByUserId(userId) {
+    console.log("farmer service ", userId);
     try {
-        const farmer = await farmerRepository.getFarmerByUserId(userId);
+        const farmer = await farmerRepository.getByUserId(userId);
         return farmer;
     }
     catch (error) {
