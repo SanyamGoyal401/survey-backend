@@ -3,17 +3,17 @@ const CrudRepository = require('./crud-repository');
 
 class FarmerRepository extends CrudRepository{
     constructor(){
-        super(User);
+        super(Farmer);
     }    
 
     async getFarmerByUserId(userId){
         try {
-            const user = await User.findOne({userId});
-            return user;
+            const farmer = await Farmer.findOne({userId});
+            return farmer;
         } catch (error) {
             throw error;
         }
     }
 }
 
-module.exports = UserRepository;
+module.exports = FarmerRepository;

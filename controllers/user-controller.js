@@ -7,8 +7,13 @@ const AppError = require("../utils/errors/app-error");
 
 async function createUser(req, res) {
     try {
-        const result = await UploadFile(req.files[0]);
-        const url = result.url;
+        const imageFile = req.files[0];
+        let result;
+        let url = null;
+        if(imageFile){
+            result = await UploadFile(imageFile);
+            url = result.url;
+        }
         const data = {
             email: req.body.email,
             password: req.body.password,
@@ -23,6 +28,7 @@ async function createUser(req, res) {
         return res.status(StatusCodes.OK).json(SuccessResponse);
     }
     catch (error) {
+        console.log(error);
         ErrorResponse.error = error.message;
         return res.status(error.statusCode).json(ErrorResponse);
     }
@@ -33,7 +39,6 @@ async function verifyUser(req, res){
         const email = req.body.email;
         const password = req.body.password;
         const user = await UserService.findUser(email);
-        console.log(user);
         if(!user){
             throw new AppError("User doesn't exists", StatusCodes.BAD_REQUEST);
         }
